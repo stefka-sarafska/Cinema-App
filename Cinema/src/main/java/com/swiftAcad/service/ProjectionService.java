@@ -1,5 +1,8 @@
 package com.swiftAcad.service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,7 +38,7 @@ public class ProjectionService {
 		contact.setCinema(cinema);
 		Cinema newCinema = cinemaRepo.save(cinema);
 		contactRepo.save(contact);
-		
+
 		for (Hall h : cinema.getHalls()) {
 			h.setCinema(newCinema);
 			hallRepo.save(h);
@@ -52,11 +55,31 @@ public class ProjectionService {
 				projectionRepo.save(p);
 			}
 		}
-		
+	}
 
-		
-		
+	public List<Projection> findAllProjectionsInGivenCinema(String cinemaName) {
+		List<Projection> projections = projectionRepo.findAllInGivenCinema(cinemaName);
+		return projections;
+	}
 
+	public Projection findProjectionByName(String name) {
+		Projection projection = projectionRepo.findByName(name);
+		return projection;
+	}
+
+	public List<Projection> findProjectionsByDate(LocalDateTime projectionDate) {
+		List<Projection> projectionsOnDate = projectionRepo.findByDate(projectionDate);
+		return projectionsOnDate;
+	}
+
+	public static boolean validateProjectionDate(Projection projection) {
+		LocalDateTime currentDate = LocalDateTime.now();
+		if (projection.getProjectionDateAndTime().isAfter(currentDate)
+				|| projection.getProjectionDateAndTime().equals(currentDate)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

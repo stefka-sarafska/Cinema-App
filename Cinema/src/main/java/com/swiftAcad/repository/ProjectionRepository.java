@@ -1,9 +1,21 @@
 package com.swiftAcad.repository;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.swiftAcad.entity.Projection;
-
-public interface ProjectionRepository extends CrudRepository<Projection, Long>{
+@Repository
+public interface ProjectionRepository extends CrudRepository<Projection, Long> {
+  
+	@Query
+	public List<Projection> findByDate(LocalDateTime projectionDate);
+	@Query
+	public Projection findByName(String name);
+	@Query
+	public List<Projection> findAllInGivenCinema(String cinemaName);
 
 }

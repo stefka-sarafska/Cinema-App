@@ -11,10 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Projection {
@@ -23,21 +20,18 @@ public class Projection {
 	private long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinColumn(name = "cinema_name")
-	@JsonIgnoreProperties("projections")
+	@JoinColumn(name = "cinema_name",insertable=false, updatable=false)
 	private Cinema cinema;
 
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinColumn(name = "movie_name")
-	@JsonIgnoreProperties("projections")
+	@JoinColumn(name = "movie_name",insertable=false, updatable=false)
 	private Movie movie;
 
 	@Column
 	private LocalDateTime projectionDateAndTime;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "hall_name")
-	@JsonIgnoreProperties("projections")
+	@JoinColumn(name = "hall_name",insertable=false, updatable=false)
 	private Hall hall;
 
 	public Projection() {
