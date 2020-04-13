@@ -2,25 +2,22 @@ package com.swiftAcad.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Contact {
+	
 	@Id
+	@Column(name = "email")
 	private String email;
 	@Column
 	private String address;
 	
 	private String phone;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cinema_name")
+	@OneToOne(mappedBy = "contact")
 	private Cinema cinema;
 
 	public Contact() {

@@ -1,5 +1,6 @@
 package com.swiftAcad.tests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -15,21 +16,29 @@ public class ProjectionTest {
 	@Test
 	public void isProjectionDateAfterCurrentDate() {
 		Projection projection = new Projection();
-		projection.setProjectionDateAndTime(LocalDateTime.now().plusHours(1));
+		projection.setProjectionDate(LocalDateTime.now().plusHours(1));
 		assertTrue(ProjectionService.validateProjectionDate(projection));
 	}
 
 	@Test
 	public void isProjectionDateEqualsCurrentDate() {
 		Projection projection = new Projection();
-		projection.setProjectionDateAndTime(LocalDateTime.now());
+		projection.setProjectionDate(LocalDateTime.now());
 		assertTrue(ProjectionService.validateProjectionDate(projection));
 	}
 
 	@Test
 	public void isProjectionDateBeforeCurrentDate() {
 		Projection projection = new Projection();
-		projection.setProjectionDateAndTime(LocalDateTime.now().minusDays(1));
+		projection.setProjectionDate(LocalDateTime.now().minusDays(1));
 		assertFalse(ProjectionService.validateProjectionDate(projection));
 	}
+//
+//	@Test
+//	public void isDaletedObject() {
+//		Projection projection = new Projection();
+//		ProjectionService service = new ProjectionService();
+//		service.deleteProjectById(projection.getId());
+//		assertEquals(null, projection);
+//	}
 }

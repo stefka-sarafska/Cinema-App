@@ -1,0 +1,12 @@
+{
+  "cinema": {
+    "name": "Grand"
+  },
+  "movie": {
+    "name": "Bad boys"
+  },
+  "projectionDateAndTime": "2020-05-08T20:15:15",
+  "hall": {
+    "name": "king"
+  }
+}

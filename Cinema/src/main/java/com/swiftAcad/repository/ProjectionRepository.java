@@ -11,11 +11,12 @@ import com.swiftAcad.entity.Projection;
 @Repository
 public interface ProjectionRepository extends CrudRepository<Projection, Long> {
   
-	@Query
-	public List<Projection> findByDate(LocalDateTime projectionDate);
-	@Query
-	public Projection findByName(String name);
-	@Query
-	public List<Projection> findAllInGivenCinema(String cinemaName);
+	public List<Projection> findAllByProjectionDate(LocalDateTime projectionDate);
+//	@Query
+//	public Projection findByName(String name);
+//	@Query
+//	public List<Projection> findAllInGivenCinema(String cinemaName);
+
+	public List<Projection> findAllProjectionByCinemaName(String cinema);
 
 }

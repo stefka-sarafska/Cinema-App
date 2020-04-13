@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.swiftAcad.entity.Cinema;
 import com.swiftAcad.entity.Movie;
-import com.swiftAcad.repository.MovieRepository;
 import com.swiftAcad.service.MovieService;
 
 @Controller
@@ -23,7 +22,7 @@ public class MovieController {
 	private MovieService movieService;
 
 	@RequestMapping(value = "movie", method = RequestMethod.POST)
-	public ResponseEntity<Cinema> addCinema(@RequestBody Movie movie) {
+	public ResponseEntity<Cinema> addMovie(@RequestBody Movie movie) {
 		movieService.addMovie(movie);
 		return new ResponseEntity<Cinema>(HttpStatus.CREATED);
 	}

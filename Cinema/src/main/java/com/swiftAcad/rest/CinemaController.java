@@ -1,20 +1,24 @@
 package com.swiftAcad.rest;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.swiftAcad.entity.Cinema;
+import com.swiftAcad.repository.CinemaRepository;
 import com.swiftAcad.service.CinemaService;
 
 @Controller
 @RequestMapping(value = "api")
 public class CinemaController {
-	
+
 	@Autowired
 	private CinemaService cinemaService;
 
@@ -22,6 +26,15 @@ public class CinemaController {
 	public ResponseEntity<Cinema> addCinema(@RequestBody Cinema cinema) {
 		cinemaService.addCinema(cinema);
 		return new ResponseEntity<Cinema>(HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value = "cinema/{name}", method = RequestMethod.GET)
+	public ResponseEntity<Cinema> getCinemaContact(@PathVariable String name) {
+		Optional<Cinema> cinema = cinemaService.getCinemaByName(name);
+		if (cinema.isPresent()) {
+			return new ResponseEntity<>(cinema.get(), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 //	@RequestMapping(value = "cinema/{name}", method = RequestMethod.GET)

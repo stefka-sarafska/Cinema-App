@@ -1,0 +1,17 @@
+{
+   "name":"Grand",
+   "contact":{
+      "email":"grand@abv.bg",
+      "address":"Sofia",
+      "phone":"089232145"
+   },
+   "halls":[
+      {
+         "name":"king",
+         "seats":[
+            "12",
+            "3c"
+         ]
+      }
+   ]
+}

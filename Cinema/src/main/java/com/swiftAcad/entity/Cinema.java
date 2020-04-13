@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -14,23 +14,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "cinema", schema = "cinema")
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Cinema {
 	@Id
 	private String name;
-
-	@OneToOne(mappedBy = "cinema", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_email", referencedColumnName = "email")
+	@JsonIgnoreProperties("cinema")
 	private Contact contact;
 
-	@OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "cinema")
+	@JsonIgnoreProperties("cinema")
 	private List<Projection> projections;
 
-	@OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "cinema",cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("cinema")
 	private List<Hall> halls;
 
-	public Cinema() {
-		super();
-	}
+	public Cinema() {}
 
 	public String getName() {
 		return name;
