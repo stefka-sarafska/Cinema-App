@@ -20,7 +20,7 @@ public class Hall {
 	private List<String> seats = new ArrayList<>();
 
 	@OneToMany(mappedBy = "hall")
-	private List<Projection> projection;
+	private List<Projection> projections;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cinema_name")
@@ -44,12 +44,12 @@ public class Hall {
 		this.seats = seats;
 	}
 
-	public List<Projection> getProjection() {
-		return projection;
+	public List<Projection> getProjections() {
+		return projections;
 	}
 
-	public void setProjection(List<Projection> projection) {
-		this.projection = projection;
+	public void setProjections(List<Projection> projection) {
+		this.projections = projection;
 	}
 
 	public Cinema getCinema() {

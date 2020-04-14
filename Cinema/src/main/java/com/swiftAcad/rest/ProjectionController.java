@@ -1,11 +1,8 @@
 package com.swiftAcad.rest;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.swiftAcad.entity.Projection;
+import com.swiftAcad.exceptions.CinemaException;
+import com.swiftAcad.exceptions.HallException;
+import com.swiftAcad.exceptions.MovieException;
 import com.swiftAcad.service.ProjectionService;
 
 @Controller
@@ -26,8 +26,13 @@ public class ProjectionController {
 
 	@RequestMapping(value = "projection", method = RequestMethod.POST)
 	public ResponseEntity<Projection> addProjection(@RequestBody Projection projection) {
-		projectionService.addProjection(projection);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		try {
+			projectionService.addProjection(projection);
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		} catch (CinemaException | HallException | MovieException e) {
+			System.out.println(e.getMessage());
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@RequestMapping(value = "projections/{cinemaName}", method = RequestMethod.GET)
@@ -38,8 +43,9 @@ public class ProjectionController {
 		}
 		return new ResponseEntity<>(projections, HttpStatus.FOUND);
 	}
-	@RequestMapping(value="projection/id/{id}")
-	public ResponseEntity<Projection> deleteProjection(@PathVariable long id){
+
+	@RequestMapping(value = "projection/id/{id}")
+	public ResponseEntity<Projection> deleteProjection(@PathVariable long id) {
 		projectionService.deleteProjectionById(id);
 		return new ResponseEntity<Projection>(HttpStatus.OK);
 	}
@@ -73,10 +79,10 @@ public class ProjectionController {
 //		}
 //	}
 //
-//	@RequestMapping(value = "project/id/{id}", method = RequestMethod.DELETE)
-//	public ResponseEntity<Projection> deleteProjectById(@PathVariable long id) {
-//		projectionService.deleteProjectById(id);
-//		return new ResponseEntity<Projection>(HttpStatus.OK);
-//	}
+	@RequestMapping(value = "projection/id/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> deleteProjectById(@PathVariable long id) {
+		projectionService.deleteProjectionById(id);
+		return new ResponseEntity<>("Projection deleted successfully!", HttpStatus.OK);
+	}
 
 }
