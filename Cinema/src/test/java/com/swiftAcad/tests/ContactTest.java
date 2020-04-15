@@ -19,7 +19,7 @@ public class ContactTest {
 	}
 
 	@Test
-	public void isContactEmailWrong() {
+	public void isContactEmailInvalid() {
 		Contact contact = new Contact();
 		contact.setEmail("cin@ema@abv.bg");
 		boolean isValid = ContactService.isValidEmail(contact.getEmail());

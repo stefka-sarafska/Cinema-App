@@ -53,7 +53,6 @@ public class CinemaController {
 			System.out.println(e.getMessage());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-
 	}
 
 	@RequestMapping(value = "cinema/delete/{name}",method = RequestMethod.DELETE)

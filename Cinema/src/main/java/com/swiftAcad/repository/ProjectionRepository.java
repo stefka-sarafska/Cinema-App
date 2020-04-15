@@ -14,14 +14,13 @@ import com.swiftAcad.entity.Projection;
 public interface ProjectionRepository extends CrudRepository<Projection, Long> {
 
 	public List<Projection> findAllByProjectionDate(LocalDateTime projectionDate);
-//	@Query
-//	public Projection findByName(String name);
-//	@Query
-//	public List<Projection> findAllInGivenCinema(String cinemaName);
-
 	public List<Projection> findAllProjectionByCinemaName(String cinema);
+	public List<Projection> findAllByMovieName(String name);
 
 	@Modifying
 	@Query("DELETE Projection p WHERE p.id = ?1")
 	public void deleteById(long id);
+	
+
+
 }

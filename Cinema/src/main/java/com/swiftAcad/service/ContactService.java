@@ -18,12 +18,13 @@ public class ContactService {
 	@Autowired
 	private ContactRepository contactRepo;
 
-	public Contact updateContact(String email, Contact newContact) throws ContactException {
-		Contact contact = contactRepo.findByEmail(email);
+	//update only phone and address
+	public Contact updateContactByEmail(Contact newContact) throws ContactException {
+		Contact contact = contactRepo.findByEmail(newContact.getEmail());
 		if (contact != null) {
 			return contactRepo.save(newContact);
 		}else {
-			throw new ContactException("Can not find contact with email: "+email);
+			throw new ContactException("Can not update contact with email: "+newContact.getEmail()+" ,because does not exist!");
 		}
 		
 	}

@@ -21,7 +21,6 @@ public class MovieController {
 	@Autowired
 	private MovieService movieService;
 
-
 	@RequestMapping(value = "movie", method = RequestMethod.POST)
 	public ResponseEntity<Cinema> addMovie(@RequestBody Movie movie) {
 		movieService.addMovie(movie);
@@ -29,10 +28,21 @@ public class MovieController {
 	}
 
 	@RequestMapping(value = "movie", method = RequestMethod.PUT)
-	public ResponseEntity<Cinema> updateMovie(@RequestBody Movie movie) {
+	public ResponseEntity<Movie> updateExistingMovieOrAddNew(@RequestBody Movie newMovie) {
 		try {
-			movieService.updateMovie(movie);
-			return new ResponseEntity<>(HttpStatus.OK);
+			Movie updatedMovie = movieService.updateMovieOrAddNew(newMovie);
+			return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
+		} catch (MovieException e) {
+			System.out.println(e.getMessage());
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@RequestMapping(value = "movie/movie", method = RequestMethod.PUT)
+	public ResponseEntity<Movie> updateExistingMovie(@RequestBody Movie newMovie) {
+		try {
+			Movie updatedMovie = movieService.updateExistingMovie(newMovie);
+			return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
 		} catch (MovieException e) {
 			System.out.println(e.getMessage());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -50,7 +60,8 @@ public class MovieController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	@RequestMapping(value = "movie/{name}",method = RequestMethod.DELETE)
+
+	@RequestMapping(value = "movie/{name}", method = RequestMethod.DELETE)
 	public ResponseEntity<Movie> deleteMovie(@PathVariable String name) {
 		movieService.deleteMovieByName(name);
 		return new ResponseEntity<Movie>(HttpStatus.OK);

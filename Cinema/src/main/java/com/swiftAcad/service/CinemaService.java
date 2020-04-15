@@ -49,11 +49,24 @@ public class CinemaService {
 		throw new CinemaException("Can not find cinema with name " + name);
 	}
 
-	public Cinema updateCinema(Cinema cinema) throws CinemaException {
-		Cinema updatedCinema = cinemaRepo.save(cinema);
-		return updatedCinema;
+	//update cinema and add new hall if does not exist
+	public Cinema updateCinema(Cinema newCinema) throws CinemaException {
+		Cinema cinema = findCinemaByName(newCinema.getName());
+		if (cinema != null) {
+			Cinema updatedCinema = cinemaRepo.save(newCinema);
+				if(!cinema.getHalls().contains(newCinema.getHalls())) {
+					for(Hall h:updatedCinema.getHalls()) {
+						h.setCinema(updatedCinema);
+						hallRepository.save(h);
+					}
+				}
+			return updatedCinema;
+		}
+		throw new CinemaException(
+				"Can not update cinema with name: " + newCinema.getName() + " ,because does not exist!");
 	}
 
+	//delete cinema with contact, projections and halls
 	public void deleteCinema(String password, String name) throws CinemaException {
 		if (password.equals(PASS_FOR_DELETE)) {
 			Cinema cinema = cinemaRepo.findByName(name);
