@@ -33,7 +33,7 @@ public class ProjectionController {
 	public ResponseEntity<Projection> addProjection(@RequestBody Projection projection) {
 		try {
 			projectionService.addProjection(projection);
-			return new ResponseEntity<>(HttpStatus.CREATED);
+			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (CinemaException | HallException | MovieException | DateException e) {
 			System.out.println(e.getMessage());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -44,7 +44,7 @@ public class ProjectionController {
 	public ResponseEntity<List<Projection>> getAllProjectinsInCinema(@PathVariable String cinemaName) {
 		try {
 			List<Projection> projections = projectionService.findAllProjectionByCinemaName(cinemaName);
-			return new ResponseEntity<>(projections, HttpStatus.FOUND);
+			return new ResponseEntity<>(projections, HttpStatus.OK);
 		} catch (ProjectionException e) {
 			System.out.println(e.getMessage());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -56,13 +56,19 @@ public class ProjectionController {
 		projectionService.deleteProjectionById(id);
 		return new ResponseEntity<Projection>(HttpStatus.OK);
 	}
+//	@RequestMapping(value="projections",method = RequestMethod.GET)
+//	public ResponseEntity<List<Projection>> getAllProjectins() {
+//		List<Projection>projections=new ArrayList<Projection>();
+//		projectRepo.findAllProjections().forEach(p->projections.add(p));
+//		return new ResponseEntity<List<Projection>>(projections,HttpStatus.OK);
+//	}
 
 	@RequestMapping(value = "projections/date/{date}", method = RequestMethod.GET)
 	public ResponseEntity<List<Projection>> getProjectionsByDate(
 			@PathVariable("date") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime date) {
 		try {
 			List<Projection> foundedProjections = projectionService.findProjectionsByProjectionDateAndTime(date);
-			return new ResponseEntity<>(foundedProjections, HttpStatus.FOUND);
+			return new ResponseEntity<>(foundedProjections, HttpStatus.OK);
 		} catch (ProjectionException e) {
 			System.out.println(e.getMessage());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -74,7 +80,7 @@ public class ProjectionController {
 	public ResponseEntity<List<Projection>> getProjectionByMovieName(@PathVariable String name) {
 		try {
 			List<Projection> projections = projectionService.findProjectionsByMovieName(name);
-			return new ResponseEntity<>(projections, HttpStatus.FOUND);
+			return new ResponseEntity<>(projections, HttpStatus.OK);
 		} catch (ProjectionException e) {
 			System.out.println(e.getMessage());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -83,9 +89,9 @@ public class ProjectionController {
 	}
 
 	@RequestMapping(value = "projection/id/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteProjectById(@PathVariable long id) {
+	public ResponseEntity<?> deleteProjectById(@PathVariable long id) {
 		projectionService.deleteProjectionById(id);
-		return new ResponseEntity<>("Projection deleted successfully!", HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }

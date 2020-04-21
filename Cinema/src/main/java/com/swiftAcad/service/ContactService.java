@@ -26,7 +26,6 @@ public class ContactService {
 		}else {
 			throw new ContactException("Can not update contact with email: "+newContact.getEmail()+" ,because does not exist!");
 		}
-		
 	}
 
 	public void deleteContactByEmail(String email){

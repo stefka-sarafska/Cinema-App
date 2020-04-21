@@ -33,6 +33,11 @@ public class Cinema {
 
 	public Cinema() {}
 
+	public Cinema(String name) {
+		super();
+		this.name = name;
+	}
+
 	public String getName() {
 		return name;
 	}

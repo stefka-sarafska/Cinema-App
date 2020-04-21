@@ -5,22 +5,27 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-
 @Entity
 public class Contact {
-	
+
 	@Id
 	@Column(name = "email")
 	private String email;
 	@Column
 	private String address;
-	
+
 	private String phone;
 
 	@OneToOne(mappedBy = "contact")
 	private Cinema cinema;
 
 	public Contact() {
+	}
+
+	public Contact(String email, String address, String phone) {
+		this.email = email;
+		this.address = address;
+		this.phone = phone;
 	}
 
 	public String getAddress() {
@@ -54,6 +59,5 @@ public class Contact {
 	public void setCinema(Cinema cinema) {
 		this.cinema = cinema;
 	}
-	
 
 }

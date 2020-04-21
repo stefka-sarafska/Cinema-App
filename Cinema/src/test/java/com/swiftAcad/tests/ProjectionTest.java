@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 import com.swiftAcad.entity.Projection;
+import com.swiftAcad.rest.ProjectionController;
 import com.swiftAcad.service.ProjectionService;
 
 public class ProjectionTest {
@@ -32,12 +33,9 @@ public class ProjectionTest {
 		projection.setProjectionDate(LocalDateTime.now().minusDays(1));
 		assertFalse(ProjectionService.validateProjectionDate(projection));
 	}
-//
-//	@Test
-//	public void isDaletedObject() {
-//		Projection projection = new Projection();
-//		ProjectionService service = new ProjectionService();
-//		service.deleteProjectById(projection.getId());
-//		assertEquals(null, projection);
-//	}
+
+	public void isProjectionDeleted() {
+		ProjectionController projectionController=new ProjectionController();
+		
+	}
 }

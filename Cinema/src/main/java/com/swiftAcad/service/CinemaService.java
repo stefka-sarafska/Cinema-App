@@ -77,6 +77,13 @@ public class CinemaService {
 			cinema.setContact(null);
 			cinema.setProjections(null);
 			cinema.setHalls(null);
+			
+			for (Hall h : halls) {
+				h.setCinema(null);
+				h.setProjections(null);
+				h.setSeats(null);
+				hallRepository.deleteByName(h.getName());
+			}
 
 			for (Projection p : projections) {
 				p.setCinema(null);
@@ -85,15 +92,12 @@ public class CinemaService {
 				projectionRepo.deleteById(p.getId());
 
 			}
-			for (Hall h : halls) {
-				h.setCinema(null);
-				h.setProjections(null);
-				h.setSeats(null);
-				hallRepository.deleteByName(h.getName());
-			}
+			
 			cinemaRepo.delete(cinema);
 			contact.setCinema(null);
 			contactRepo.delete(contact);
+			
+			
 
 		} else {
 			throw new CinemaException("Invalid password for deleting cinema " + name);
