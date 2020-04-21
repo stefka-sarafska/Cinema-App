@@ -3,13 +3,17 @@
 <button mat-raised-button color="primary" (click)="searchCinemas()">Get cinemas</button>
 <button mat-raised-button color="primary" (click)="showAddCinemas()">Add cinema</button>
 <button mat-raised-button color="primary" (click)="searchMovies()">Get movies</button>
-<button mat-raised-button color="primary" (click)="showAddMovies()">Add movies</button>
+<button mat-raised-button color="primary" (click)="showAddMovies()">Add movie</button>
 
+
+<app-add-movie *ngIf="addMovie"
+(addMovie)=addNewMovie($event)
+>
+</app-add-movie>
 
 <app-add-cinema *ngIf="addCinema"
 (addCinema)=addNewCinema($event)
 ></app-add-cinema>
-
 
 
 <app-add-projection *ngIf="addProjection"
@@ -26,6 +30,7 @@ class="projection"
 [format]="m.format"
 [genre]="m.genre"
 [premiere]="m.premiere"
+(deleteEvent)=deleteMovie($event)
 ></app-movie>
 </div>
 
@@ -48,10 +53,10 @@ class="projection"
 <app-projection 
 class="projection"
 *ngFor="let projection of projections"
-[projectId]="projection.projectionId"
-[cinema_name]="projection.cinema_name"
-[movie_name]="projection.movie_name"
-[hall_name]="projection.hall_name"
+[projectionId]="projection.projectionId"
+[cinemaName]="projection.cinemaName"
+[movieName]="projection.movieName"
+[hallName]="projection.hallName"
 [date]="projection.date"
 (deleteEvent)=deleteProjection($event)
 ></app-projection>

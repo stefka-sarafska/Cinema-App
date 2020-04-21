@@ -12,8 +12,9 @@ import {MatInputModule} from '@angular/material/input';
 import { AddProjectionComponent } from './add-projection/add-projection.component';
 import { CinemaComponent } from './cinema/cinema.component';
 import { AddCinemaComponent } from './add-cinema/add-cinema.component';
-import { ProjectionComponent } from './projection/projection.component';
 import { MovieComponent } from './movie/movie.component';
+import { AddMovieComponent } from './add-movie/add-movie.component';
+import { ProjectionComponent } from './projection/projection.component';
 
 
 
@@ -29,6 +30,7 @@ import { MovieComponent } from './movie/movie.component';
     AddCinemaComponent,
     ProjectionComponent,
     MovieComponent,
+    AddMovieComponent,
     
 
 

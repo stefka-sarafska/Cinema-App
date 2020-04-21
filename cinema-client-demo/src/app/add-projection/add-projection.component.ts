@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Projection } from '../projection/projection.model';
+import { Projection } from '../projection/projection.module';
+
 
 
 @Component({
@@ -9,9 +10,10 @@ import { Projection } from '../projection/projection.model';
 })
 export class AddProjectionComponent implements OnInit {
 projection: Projection={};
- cinema_name: string;
- movie_name: string;
- hall_name: string;
+projectionId:number;
+ cinemaName: string;
+ movieName: string;
+ hallName: string;
  date: Date;
 
  @Output() addProjection= new EventEmitter<Projection>();

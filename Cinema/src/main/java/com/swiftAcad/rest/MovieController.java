@@ -38,17 +38,6 @@ public class MovieController {
 		}
 	}
 
-	@RequestMapping(value = "movie/movie", method = RequestMethod.PUT)
-	public ResponseEntity<Movie> updateExistingMovie(@RequestBody Movie newMovie) {
-		try {
-			Movie updatedMovie = movieService.updateExistingMovie(newMovie);
-			return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
-		} catch (MovieException e) {
-			System.out.println(e.getMessage());
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-
-	}
 
 	@RequestMapping(value = "movie/{name}", method = RequestMethod.GET)
 	public ResponseEntity<Movie> getMovieByName(@PathVariable String name) {

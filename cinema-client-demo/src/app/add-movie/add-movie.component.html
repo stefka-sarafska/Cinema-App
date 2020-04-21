@@ -1,0 +1,25 @@
+<div style="padding: 10px;">
+    <span>name </span>
+    <input [(ngModel)]="movie.name">
+</div>
+<div style="padding: 10px;">
+    <span>actors </span>
+    <input [(ngModel)]="movie.actors">
+</div>
+<div style="padding: 10px;">
+    <span>description </span>
+    <input [(ngModel)]="movie.description">
+</div>
+<div style="padding: 10px;">
+    <span>format </span>
+    <input [(ngModel)]="movie.format">
+</div>
+<div style="padding: 10px;">
+    <span>genre </span>
+    <input [(ngModel)]="movie.genre">
+</div>
+<div style="padding: 10px;">
+    <span>premiere </span>
+    <input [(ngModel)]="movie.premiere">
+</div>
+<button mat-raised-button color="primary" (click)="add()">Add</button>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 
 
@@ -6,21 +6,25 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   selector: 'app-projection',
   templateUrl: './projection.component.html',
   styleUrls: ['./projection.component.css']
-
 })
-export class ProjectionComponent implements OnInit {
-@Input() projectId:number;
-@Input() cinema_name: string;
-@Input() movie_name:string;
-@Input() hall_name:string;
-@Input() date:Date;
-@Output() deleteEvent=new EventEmitter<number>();
-  constructor() { }
+export class ProjectionComponent implements OnInit { 
 
-  ngOnInit(): void {
-  }
-  deleteProjection(){
-    this.deleteEvent.emit(this.projectId);
-  }
+  @Input() projectionId: number;
+  @Input() cinemaName: string;
+  @Input() movieName: string;
+  @Input() hallName: string;
+  @Input() date: Date;
+  @Output() deleteEvent=new EventEmitter<number>();
+
+deleteProjection(){
+  this.deleteEvent.emit(this.projectionId)
+}
+
+
+constructor() { }
+
+ngOnInit(): void {
+  
+}
 
 }

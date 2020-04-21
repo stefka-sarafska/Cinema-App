@@ -22,6 +22,8 @@ public class CinemaDto {
 		this.projections.add(projections);
 		
 	}
+	
+
 
 	public String getCinemaName() {
 		return cinemaName;
