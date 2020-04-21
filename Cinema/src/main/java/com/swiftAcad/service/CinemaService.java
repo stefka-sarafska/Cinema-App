@@ -49,59 +49,53 @@ public class CinemaService {
 		throw new CinemaException("Can not find cinema with name " + name);
 	}
 
-	//update cinema and add new hall if does not exist
+	// update cinema and add new hall if does not exist
 	public Cinema updateCinema(Cinema newCinema) throws CinemaException {
 		Cinema cinema = findCinemaByName(newCinema.getName());
 		if (cinema != null) {
 			Cinema updatedCinema = cinemaRepo.save(newCinema);
-				if(!cinema.getHalls().contains(newCinema.getHalls())) {
-					for(Hall h:updatedCinema.getHalls()) {
-						h.setCinema(updatedCinema);
-						hallRepository.save(h);
-					}
+			if (!cinema.getHalls().contains(newCinema.getHalls())) {
+				for (Hall h : updatedCinema.getHalls()) {
+					h.setCinema(updatedCinema);
+					hallRepository.save(h);
 				}
+			}
 			return updatedCinema;
 		}
 		throw new CinemaException(
 				"Can not update cinema with name: " + newCinema.getName() + " ,because does not exist!");
 	}
 
-	//delete cinema with contact, projections and halls
-	public void deleteCinema(String password, String name) throws CinemaException {
-		if (password.equals(PASS_FOR_DELETE)) {
-			Cinema cinema = cinemaRepo.findByName(name);
-			Contact contact = cinema.getContact();
-			List<Projection> projections = cinema.getProjections();
-			List<Hall> halls = cinema.getHalls();
+	// delete cinema with contact, projections and halls
+	public void deleteCinema(String name) throws CinemaException {
+		Cinema cinema = cinemaRepo.findByName(name);
+		Contact contact = cinema.getContact();
+		List<Projection> projections = cinema.getProjections();
+		List<Hall> halls = cinema.getHalls();
 
-			cinema.setContact(null);
-			cinema.setProjections(null);
-			cinema.setHalls(null);
-			
-			for (Hall h : halls) {
-				h.setCinema(null);
-				h.setProjections(null);
-				h.setSeats(null);
-				hallRepository.deleteByName(h.getName());
-			}
+		cinema.setContact(null);
+		cinema.setProjections(null);
+		cinema.setHalls(null);
 
-			for (Projection p : projections) {
-				p.setCinema(null);
-				p.setHall(null);
-				p.setMovie(null);
-				projectionRepo.deleteById(p.getId());
-
-			}
-			
-			cinemaRepo.delete(cinema);
-			contact.setCinema(null);
-			contactRepo.delete(contact);
-			
-			
-
-		} else {
-			throw new CinemaException("Invalid password for deleting cinema " + name);
+		for (Hall h : halls) {
+			h.setCinema(null);
+			h.setProjections(null);
+			h.setSeats(null);
+			hallRepository.deleteByName(h.getName());
+			hallRepository.save(h);
 		}
+		for (Projection p : projections) {
+			p.setCinema(null);
+			p.setHall(null);
+			p.setMovie(null);
+			projectionRepo.deleteById(p.getId());
+			projectionRepo.save(p);
+		}
+		contact.setCinema(null);
+		contactRepo.delete(contact);
+		contactRepo.save(contact);
+		cinemaRepo.delete(cinema);
+
 	}
 
 }

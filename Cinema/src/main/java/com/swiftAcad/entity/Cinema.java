@@ -17,9 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Cinema {
 	@Id
 	private String name;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_email", referencedColumnName = "email")
+	@JoinColumn(name = "contact_email", referencedColumnName = "email")
 	@JsonIgnoreProperties("cinema")
 	private Contact contact;
 
@@ -27,15 +27,18 @@ public class Cinema {
 	@JsonIgnoreProperties("cinema")
 	private List<Projection> projections;
 
-	@OneToMany(mappedBy = "cinema",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("cinema")
 	private List<Hall> halls;
 
-	public Cinema() {}
+	public Cinema() {
+	}
 
-	public Cinema(String name) {
+	public Cinema(String name, Contact contact, List<Hall> halls) {
 		super();
 		this.name = name;
+		this.contact = contact;
+		this.halls = halls;
 	}
 
 	public String getName() {
@@ -49,7 +52,6 @@ public class Cinema {
 	public Contact getContact() {
 		return contact;
 	}
-	
 
 	public void setContact(Contact contact) {
 		this.contact = contact;

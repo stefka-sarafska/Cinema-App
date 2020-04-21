@@ -42,6 +42,8 @@ public class Projection {
 	public Projection() {
 		super();
 	}
+	
+	
 
 	public Cinema getCinema() {
 		return cinema;

@@ -13,7 +13,7 @@ import com.swiftAcad.repository.ContactRepository;
 @Component
 public class ContactService {
 	private static final String EMAIL_REGEX = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-	private static final String PHONE_REGEX = "(^((\\+\\d{1,3})|(0))(\\s)*((\\d{2,4})(\\s)*){3})";
+	private static final String PHONE_REGEX = "(^((\\+\\d{3})|(0))((\\d{9}))\\s+)";
 
 	@Autowired
 	private ContactRepository contactRepo;
@@ -40,8 +40,10 @@ public class ContactService {
 	}
 
 	public static boolean isValidPhoneNumber(String phoneNumber) {
+		String numberWithOutSpaces=phoneNumber.replaceAll("\\s", "");
+		numberWithOutSpaces = numberWithOutSpaces+" ";
 		Pattern pattern = Pattern.compile(PHONE_REGEX);
-		Matcher matcher = pattern.matcher(phoneNumber);
+		Matcher matcher = pattern.matcher(numberWithOutSpaces);
 		return matcher.find();
 	}
 

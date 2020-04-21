@@ -58,7 +58,7 @@ public class CinemaController {
 	@RequestMapping(value = "cinema/delete/{name}",method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteCinema(@PathVariable("name") String name) {
 		try {
-			cinemaService.deleteCinema("129s", name);
+			cinemaService.deleteCinema(name);
 			return new ResponseEntity<>("Successfull delete cinema " + name, HttpStatus.OK);
 		} catch (CinemaException e) {
 			System.out.println(e.getMessage());
