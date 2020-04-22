@@ -1,15 +1,15 @@
-<div>
+<div class="cinema">
     <h1>{{cinemaName}}</h1>
     <p>email: {{email}}</p>
     <p>address: {{address}}</p>
     <p>phone: {{phone}}</p>
     <p>Halls:</p>
     <p *ngFor="let hall of halls">{{hall}}</p>
-    <p>Projections:</p>
+    <p *ngIf="projections.length != 0 ">Projections:</p>
     <p *ngFor="let projection of projections">{{projection}}</p>
 
     <p>
-    <button mat-fab color="primary" (click)=" deleteCinema()" aria-label="Example icon button with a delete icon">del
+    <button mat-fab class="buttons" (click)=" deleteCinema()" aria-label="Example icon button with a delete icon">del
     </button>
     </p>
 </div>

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Cinema } from './cinema/cinema.module';
 import { Movie } from './movie/movie.module';
 import { Projection } from './projection/projection.module';
+import { ɵBrowserAnimationFactory } from '@angular/platform-browser/animations';
 
 
 @Component({
@@ -42,11 +43,18 @@ export class AppComponent {
       console.log("Body is " + body)
       this.cinemas = body
       console.log(this.cinemas)
-    })
+    });
+    if(this.cinemas.length==0){
+      this.http.get<Cinema[]>('cinema/cinema/cinema').subscribe((body)=>{
+        console.log(body)
+        this.cinemas=body
+      })
+    }
   }
   deleteCinema(name: string) {
     console.log("Delete cinema with name " + name);
     this.http.delete<any>('api/cinema/delete/' + name).subscribe(() => { console.log("Successful delete") });
+    
     this.searchCinemas();
   }
   searchProjections() {
@@ -56,12 +64,14 @@ export class AppComponent {
       this.projections = body
       console.log(this.projections)
     });
+   
   }
   searchMovies() {
-    this.http.get<Movie[]>('movie/movie').subscribe((body) => {
+    this.http.get<Movie[]>('movie/movie/movie').subscribe((body) => {
       console.log(body)
       this.movies = body
       console.log(this.projections)
+   
     });
   }
   deleteMovie(name: string) {

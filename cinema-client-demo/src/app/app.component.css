@@ -8,3 +8,25 @@
     border-style: outset;
     margin: 10px;
 }
+
+.title{
+text-align: center;
+font-size:xx-large;
+background-image: url(C:\Users\Dell\Desktop\1.png);
+
+}
+
+
+.buttons{
+    color: chocolate;
+    font-stretch: extra-expanded;
+    background-color: cornsilk;
+    padding: 14px 85px;
+    margin: 2.5px;
+ 
+}
+
+.page{
+background-color: khaki;
+}
+

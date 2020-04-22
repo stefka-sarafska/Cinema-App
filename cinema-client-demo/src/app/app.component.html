@@ -1,9 +1,12 @@
-<button mat-raised-button color="primary" (click)="searchProjections()">Get projections</button>
-<button mat-raised-button color="primary" (click)="showAddProjections()">Add projection</button>
-<button mat-raised-button color="primary" (click)="searchCinemas()">Get cinemas</button>
-<button mat-raised-button color="primary" (click)="showAddCinemas()">Add cinema</button>
-<button mat-raised-button color="primary" (click)="searchMovies()">Get movies</button>
-<button mat-raised-button color="primary" (click)="showAddMovies()">Add movie</button>
+<body class="page">
+<mat-card class="title">Cinema App</mat-card>
+
+<button mat-raised-button class="buttons" (click)="searchCinemas()">Get cinemas</button>
+<button mat-raised-button  class="buttons" (click)="showAddCinemas()">Add cinema</button>
+<button mat-raised-button class="buttons" (click)="searchProjections()">Get projections</button>
+<button mat-raised-button  class="buttons" (click)="showAddProjections()">Add projection</button>
+<button mat-raised-button  class="buttons" (click)="searchMovies()">Get movies</button>
+<button mat-raised-button  class="buttons" (click)="showAddMovies()">Add movie</button>
 
 
 <app-add-movie *ngIf="addMovie"
@@ -61,3 +64,5 @@ class="projection"
 (deleteEvent)=deleteProjection($event)
 ></app-projection>
 </div>
+
+</body>
