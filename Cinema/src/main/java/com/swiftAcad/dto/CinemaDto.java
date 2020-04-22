@@ -20,9 +20,18 @@ public class CinemaDto {
 		this.phone = phone;
 		this.halls.add(halls);
 		this.projections.add(projections);
-		
 	}
 	
+
+	public CinemaDto(String cinemaName, String email, String address, String phone, String halls) {
+		super();
+		this.cinemaName = cinemaName;
+		this.email = email;
+		this.address = address;
+		this.phone = phone;
+		this.halls.add(halls);
+	}
+
 
 
 	public String getCinemaName() {

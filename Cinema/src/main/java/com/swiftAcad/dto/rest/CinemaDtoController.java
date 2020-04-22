@@ -1,5 +1,6 @@
 package com.swiftAcad.dto.rest;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,10 @@ public class CinemaDtoController {
 	@GetMapping("/cinema/cinema")
 	public ResponseEntity<Set<CinemaDto>> getAllCinemaData() {
 		return new ResponseEntity<>(cinemaDtoService.findCinemaData(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/cinema/cinema/cinema")
+	public ResponseEntity<List<CinemaDto>> getAllCinemaDataWithOutProjections() {
+		return new ResponseEntity<>(cinemaDtoService.findCinemaDataWithOutProjections(), HttpStatus.OK);
 	}
 }

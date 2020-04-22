@@ -24,6 +24,16 @@ public class MovieDto {
 		this.premiereDate = premiereDate;
 		this.projections.add(projections);
 	}
+	public MovieDto(String name, String actors, String description, String format, String genre,
+			LocalDateTime premiereDate) {
+		super();
+		this.name = name;
+		this.actors = actors;
+		this.description = description;
+		this.format = format;
+		this.genre = genre;
+		this.premiereDate = premiereDate;
+	}
 
 	public String getName() {
 		return name;
@@ -96,7 +106,6 @@ public class MovieDto {
 				}
 				;
 			});
-			
 			movies.add(a);
 		} else {
 			movies.add(o);

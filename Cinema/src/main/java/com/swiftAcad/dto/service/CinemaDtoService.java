@@ -34,5 +34,8 @@ public class CinemaDtoService {
 		}
 		return new HashSet<>(findedCinemas);
 	}
+	public List<CinemaDto> findCinemaDataWithOutProjections(){
+		return  cinemaDtoRespository.fetchCinemaDataWithOutProjections();
+	}
 
 }

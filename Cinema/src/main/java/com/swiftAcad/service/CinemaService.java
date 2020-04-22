@@ -29,15 +29,20 @@ public class CinemaService {
 	private HallRepository hallRepository;
 
 	public void addCinema(Cinema cinema) throws CinemaException {
-		if (ContactService.isValidEmail(cinema.getContact().getEmail())
-				&& ContactService.isValidPhoneNumber(cinema.getContact().getPhone())) {
-			for (Hall h : cinema.getHalls()) {
-				h.setCinema(cinema);
+		if (cinema.getContact() != null) {
+			String cinemaEmail = cinema.getContact().getEmail();
+			String cinemaPhone = cinema.getContact().getPhone();
+
+			if (cinemaEmail != null && cinemaPhone != null && ContactService.isValidEmail(cinemaEmail)
+					&& ContactService.isValidPhoneNumber(cinemaPhone)) {
+				for (Hall h : cinema.getHalls()) {
+					h.setCinema(cinema);
+				}
+				cinemaRepo.save(cinema);
+			} else {
+				throw new CinemaException(
+						"Can not add new cinema in DB, because contact email or phone number are invalid!");
 			}
-			cinemaRepo.save(cinema);
-		} else {
-			throw new CinemaException(
-					"Can not add new cinema in DB, because contact email or phone number are invalid!");
 		}
 	}
 

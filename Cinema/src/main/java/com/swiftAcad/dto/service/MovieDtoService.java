@@ -34,4 +34,8 @@ public class MovieDtoService {
 		}
 		return new HashSet<>(findedMovies);
 	}
+	
+	public List<MovieDto> findAllMoviesWithoutProjections(){
+		return movieDtoRespository.fetchAllMoviesWithOutProjections();
+	}
 }
