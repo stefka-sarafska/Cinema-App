@@ -1,8 +1,25 @@
 {
-  "name": "Bad boys",
-  "description": "skvnfwkrnv",
+  "name": "Hollywood",
+  "description": "A group of aspiring actors and filmmakers in post-World War II Hollywood try to make it big - no matter the cost.",
   "format": "2D",
-  "genre": "comedy",
-  "actors": "John Smith",
-  "premiereDate": "2020-01-08T20:15:15"
+  "genre": "Drama, History",
+  "actors": "Darren Criss, Patti LuPone, Jake Picking",
+  "premiereDate": "2020-11-08T20:15:15"
+}
+
+{
+  "name": "El hoyo",
+  "description": "A vertical prison with one cell per level. Two people per cell. One only food platform and two minutes per day to feed from up to down. An endless nightmare trapped in The Hole.",
+  "format": "2D",
+  "genre": "Horror, Sci-Fi, Thriller",
+  "actors": "Ivan Massagué, Zorion Eguileor, Antonia San Juan",
+  "premiereDate": "2020-10-08T15:30:00"
+}
+{
+  "name": "The Wretched",
+  "description": "A defiant teenage boy, struggling with his parent's imminent divorce, faces off with a thousand year-old witch, who is living beneath the skin of and posing as the woman next door.",
+  "format": "3D",
+  "genre": "Horror",
+  "actors": "John-Paul Howard, Piper Curda, Jamison Jones, Azie Tesfai",
+  "premiereDate": "2020-08-15T15:30:00"
 }

@@ -1,17 +1,29 @@
 {
-   "name":"Grand",
-   "contact":{
-      "email":"grand@abv.bg",
-      "address":"Sofia",
-      "phone":"089232145"
-   },
-   "halls":[
-      {
-         "name":"king",
-         "seats":[
-            "12",
-            "3c"
-         ]
-      }
-   ]
+  "name": "Grand",
+  "contact": {
+    "email": "grand@abv.bg",
+    "address": "Sofia",
+    "phone": "0892321455"
+  },
+  "halls": [
+    {
+      "name": "king",
+      "seats": "1 2 3"
+    }
+  ]
+}
+
+{
+  "name": "Cinema city",
+  "contact": {
+    "email": "cinemaCity@abv.bg",
+    "address": "Sofia",
+    "phone": "0892321453"
+  },
+  "halls": [
+    {
+      "name": "lion",
+      "seats": "1A 2A 3A 4A 5A 6A 7A 8A 9A 1B 2B 3B 4B 5B 6B 7B 8B 9B"
+    }
+  ]
 }

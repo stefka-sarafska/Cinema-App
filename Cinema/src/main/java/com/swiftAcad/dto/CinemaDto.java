@@ -5,13 +5,14 @@ import java.util.List;
 
 
 public class CinemaDto {
+
 	private String cinemaName;
 	private String email;
 	private String address;
 	private String phone;
 	private List<String> halls = new ArrayList<String>();
 	private List<String> projections = new ArrayList<String>();
-
+	
 	public CinemaDto(String cinemaName, String email, String address, String phone, String halls, String projections) {
 		super();
 		this.cinemaName = cinemaName;
@@ -31,9 +32,7 @@ public class CinemaDto {
 		this.phone = phone;
 		this.halls.add(halls);
 	}
-
-
-
+	
 	public String getCinemaName() {
 		return cinemaName;
 	}
