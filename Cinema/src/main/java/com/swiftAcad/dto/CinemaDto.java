@@ -87,7 +87,7 @@ public class CinemaDto {
 				+ ", halls=" + halls + ", projections=" + projections + "]";
 	}
 
-	public static List<CinemaDto> compareTo(CinemaDto o, CinemaDto a) {
+	public static List<CinemaDto> compareAndGetUniqueCinemas(CinemaDto o, CinemaDto a) {
 		List<CinemaDto> cinemas = new ArrayList<CinemaDto>();
 		if (o.getCinemaName().equals(a.getCinemaName()) && o.getEmail().equals(a.getEmail())
 				&& o.getAddress().equals(a.getAddress()) && o.getPhone().equals(a.getPhone())) {

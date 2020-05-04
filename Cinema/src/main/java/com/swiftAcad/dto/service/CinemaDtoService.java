@@ -25,7 +25,7 @@ public class CinemaDtoService {
 			for (int i = 1; i < cinemas.size(); i++) {
 				CinemaDto currCinema = cinemas.get(i);
 				CinemaDto prevCinema = cinemas.get(i - 1);
-				List<CinemaDto> currCinemas = CinemaDto.compareTo(prevCinema, currCinema);
+				List<CinemaDto> currCinemas = CinemaDto.compareAndGetUniqueCinemas(prevCinema, currCinema);
 				findedCinemas.addAll(currCinemas);
 			}
 		}
