@@ -4,5 +4,5 @@ export interface Movie{
     description?:string;
     format?:string;
     genre?:string;
-    premiere?:Date;
+    premiere?:string;
 }

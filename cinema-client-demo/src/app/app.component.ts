@@ -28,17 +28,22 @@ export class AppComponent {
   constructor(private http: HttpClient) {
 
   }
+  reload(){
+    location.reload();
+  }
   addNewMovie(movie: Movie) {
+    
     this.http.post<Movie>("/api/movie", movie)
       .subscribe((body) => {
+        console.log(movie.premiere)
         this.addMovie=false;
-          this.searchMovies();
       })
   }
   showAddMovies() {
     this.addMovie = true;
   }
   searchCinemas() {
+   
     this.http.get<Cinema[]>('cinema/cinema').subscribe((body) => {
       console.log("Body is " + body)
       this.cinemas = body
